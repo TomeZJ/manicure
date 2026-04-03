@@ -150,28 +150,30 @@ export default {
         },
         {
           title: "客户姓名",
-          dataIndex: "customerName",
-          key: "customerName",
+          dataIndex: "customer_name",
+          key: "customer_name",
         },
         {
           title: "联系电话",
-          dataIndex: "customerPhone",
-          key: "customerPhone",
+          dataIndex: "customer_phone",
+          key: "customer_phone",
         },
         {
           title: "预约时间",
-          key: "time",
-          render: (_, record) => `${record.appointmentDate} ${record.timeSlot}`,
+          dataIndex: "appointment_date",
+          key: "appointment_date",
+          render: (_, record) =>
+            `${record.appointment_date} ${record.time_slot}`,
         },
         {
           title: "门店",
-          key: "store",
-          render: (_, record) => record.store?.name || "",
+          key: "Store",
+          render: (_, record) => record.Store?.name || "",
         },
         {
           title: "技师",
           key: "technician",
-          render: (_, record) => record.technician?.name || "随机安排",
+          render: (_, record) => record.Technician?.name || "随机安排",
         },
         {
           title: "状态",

@@ -1,5 +1,8 @@
 <template>
-  <a-layout class="min-h-screen">
+  <div v-if="!isAuthenticated" class="min-h-screen">
+    <router-view />
+  </div>
+  <a-layout v-else class="min-h-screen">
     <!-- 侧边栏 -->
     <a-layout-sider :width="200" style="background: #fff">
       <div class="logo p-4 text-center text-xl font-bold text-primary">
@@ -161,6 +164,7 @@ export default {
   data() {
     return {
       adminName: "",
+      isAuthenticated: false,
     };
   },
   computed: {
@@ -169,16 +173,32 @@ export default {
     },
   },
   mounted() {
-    const adminStr = localStorage.getItem("admin");
-    if (adminStr) {
-      const admin = JSON.parse(adminStr);
-      this.adminName = admin.name;
-    }
+    this.checkAuthStatus();
+    // 监听路由变化，确保登录状态正确
+    this.$router.beforeEach((to, from, next) => {
+      this.checkAuthStatus();
+      next();
+    });
   },
   methods: {
+    checkAuthStatus() {
+      this.isAuthenticated = !!localStorage.getItem("token");
+      this.updateAdminInfo();
+    },
+    updateAdminInfo() {
+      const adminStr = localStorage.getItem("admin");
+      if (adminStr) {
+        const admin = JSON.parse(adminStr);
+        this.adminName = admin.name;
+      } else {
+        this.adminName = "";
+      }
+    },
     logout() {
       localStorage.removeItem("token");
       localStorage.removeItem("admin");
+      this.isAuthenticated = false;
+      this.adminName = "";
       this.$router.push("/login");
     },
   },
@@ -189,8 +209,9 @@ export default {
 .logo {
   background: linear-gradient(135deg, #ff6b8b 0%, #8b5cf6 100%);
   color: white;
-  border-radius: 8px;
-  margin: 16px;
+  text-align: center;
+  font-size: 20px;
+  padding: 16px;
 }
 .ant-menu-item-icon {
   width: 12px;
