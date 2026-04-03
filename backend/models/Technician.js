@@ -15,13 +15,17 @@ const Technician = sequelize.define('Technician', {
     type: DataTypes.STRING(255),
     allowNull: true
   },
-  specialties: {
+  skills: {
     type: DataTypes.TEXT,
     allowNull: true
   },
   status: {
-    type: DataTypes.ENUM('working', 'rest'),
-    defaultValue: 'working'
+    type: DataTypes.ENUM('available', 'busy'),
+    defaultValue: 'available'
+  },
+  store_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true
   },
   created_at: {
     type: DataTypes.DATE,

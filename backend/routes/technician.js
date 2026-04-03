@@ -1,17 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const { storage, generateId } = require('../config/memoryStorage');
+const { Technician } = require('../models');
 const { adminAuth } = require('../middleware/auth');
 
 // 获取技师列表
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const { status } = req.query;
-    let technicians = storage.technicians;
+    const where = {};
     
     if (status) {
-      technicians = technicians.filter(t => t.status === status);
+      where.status = status;
     }
+    
+    const technicians = await Technician.findAll({ where });
     
     res.json(technicians);
   } catch (error) {
@@ -21,9 +23,9 @@ router.get('/', (req, res) => {
 });
 
 // 获取技师详情
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const technician = storage.technicians.find(t => t.id === parseInt(req.params.id));
+    const technician = await Technician.findByPk(req.params.id);
     
     if (!technician) {
       return res.status(404).json({ message: '技师不存在' });
@@ -37,22 +39,17 @@ router.get('/:id', (req, res) => {
 });
 
 // 创建技师（管理员）
-router.post('/', adminAuth, (req, res) => {
+router.post('/', adminAuth, async (req, res) => {
   try {
     const { name, avatar, skills, status, storeId } = req.body;
     
-    const technician = {
-      id: generateId(storage.technicians),
+    const technician = await Technician.create({
       name,
       avatar,
       skills,
       status: status || 'available',
-      storeId,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    
-    storage.technicians.push(technician);
+      store_id: storeId
+    });
     
     res.status(201).json({
       message: '创建成功',
@@ -65,21 +62,22 @@ router.post('/', adminAuth, (req, res) => {
 });
 
 // 更新技师（管理员）
-router.put('/:id', adminAuth, (req, res) => {
+router.put('/:id', adminAuth, async (req, res) => {
   try {
     const { name, avatar, skills, status, storeId } = req.body;
-    const technician = storage.technicians.find(t => t.id === parseInt(req.params.id));
+    const technician = await Technician.findByPk(req.params.id);
     
     if (!technician) {
       return res.status(404).json({ message: '技师不存在' });
     }
     
-    technician.name = name || technician.name;
-    technician.avatar = avatar || technician.avatar;
-    technician.skills = skills || technician.skills;
-    technician.status = status || technician.status;
-    technician.storeId = storeId || technician.storeId;
-    technician.updatedAt = new Date();
+    await technician.update({
+      name: name || technician.name,
+      avatar: avatar || technician.avatar,
+      skills: skills || technician.skills,
+      status: status || technician.status,
+      store_id: storeId || technician.store_id
+    });
     
     res.json({
       message: '更新成功',
@@ -92,15 +90,15 @@ router.put('/:id', adminAuth, (req, res) => {
 });
 
 // 删除技师（管理员）
-router.delete('/:id', adminAuth, (req, res) => {
+router.delete('/:id', adminAuth, async (req, res) => {
   try {
-    const technicianIndex = storage.technicians.findIndex(t => t.id === parseInt(req.params.id));
+    const technician = await Technician.findByPk(req.params.id);
     
-    if (technicianIndex === -1) {
+    if (!technician) {
       return res.status(404).json({ message: '技师不存在' });
     }
     
-    storage.technicians.splice(technicianIndex, 1);
+    await technician.destroy();
     
     res.json({ message: '删除成功' });
   } catch (error) {

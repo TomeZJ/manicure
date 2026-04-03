@@ -1,21 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const { storage, generateId } = require('../config/memoryStorage');
+const { Project } = require('../models');
 const { adminAuth } = require('../middleware/auth');
 
 // 获取项目列表
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const { category, status } = req.query;
-    let projects = storage.projects;
+    const where = {};
     
     if (category) {
-      projects = projects.filter(p => p.category === category);
+      where.category = category;
     }
     
     if (status) {
-      projects = projects.filter(p => p.status === status);
+      where.status = status;
     }
+    
+    const projects = await Project.findAll({ where });
     
     res.json(projects);
   } catch (error) {
@@ -25,9 +27,9 @@ router.get('/', (req, res) => {
 });
 
 // 获取项目详情
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const project = storage.projects.find(p => p.id === parseInt(req.params.id));
+    const project = await Project.findByPk(req.params.id);
     
     if (!project) {
       return res.status(404).json({ message: '项目不存在' });
@@ -41,24 +43,19 @@ router.get('/:id', (req, res) => {
 });
 
 // 创建项目（管理员）
-router.post('/', adminAuth, (req, res) => {
+router.post('/', adminAuth, async (req, res) => {
   try {
     const { name, category, price, duration, image, description, status } = req.body;
     
-    const project = {
-      id: generateId(storage.projects),
+    const project = await Project.create({
       name,
       category,
       price,
       duration,
       image,
       description,
-      status: status || 'active',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    
-    storage.projects.push(project);
+      status: status || 'active'
+    });
     
     res.status(201).json({
       message: '创建成功',
@@ -71,23 +68,24 @@ router.post('/', adminAuth, (req, res) => {
 });
 
 // 更新项目（管理员）
-router.put('/:id', adminAuth, (req, res) => {
+router.put('/:id', adminAuth, async (req, res) => {
   try {
     const { name, category, price, duration, image, description, status } = req.body;
-    const project = storage.projects.find(p => p.id === parseInt(req.params.id));
+    const project = await Project.findByPk(req.params.id);
     
     if (!project) {
       return res.status(404).json({ message: '项目不存在' });
     }
     
-    project.name = name || project.name;
-    project.category = category || project.category;
-    project.price = price || project.price;
-    project.duration = duration || project.duration;
-    project.image = image || project.image;
-    project.description = description || project.description;
-    project.status = status || project.status;
-    project.updatedAt = new Date();
+    await project.update({
+      name: name || project.name,
+      category: category || project.category,
+      price: price || project.price,
+      duration: duration || project.duration,
+      image: image || project.image,
+      description: description || project.description,
+      status: status || project.status
+    });
     
     res.json({
       message: '更新成功',
@@ -100,15 +98,15 @@ router.put('/:id', adminAuth, (req, res) => {
 });
 
 // 删除项目（管理员）
-router.delete('/:id', adminAuth, (req, res) => {
+router.delete('/:id', adminAuth, async (req, res) => {
   try {
-    const projectIndex = storage.projects.findIndex(p => p.id === parseInt(req.params.id));
+    const project = await Project.findByPk(req.params.id);
     
-    if (projectIndex === -1) {
+    if (!project) {
       return res.status(404).json({ message: '项目不存在' });
     }
     
-    storage.projects.splice(projectIndex, 1);
+    await project.destroy();
     
     res.json({ message: '删除成功' });
   } catch (error) {

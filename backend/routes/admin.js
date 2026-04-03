@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { storage } = require('../config/memoryStorage');
+const { Admin } = require('../models');
 const { adminAuth } = require('../middleware/auth');
 require('dotenv').config();
 
 // 管理员登录
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     
@@ -16,7 +16,7 @@ router.post('/login', (req, res) => {
     }
     
     // 查找管理员
-    const admin = storage.admins.find(a => a.username === username);
+    const admin = await Admin.findOne({ where: { username } });
     
     if (!admin) {
       return res.status(401).json({ message: '用户名或密码错误' });
@@ -51,9 +51,9 @@ router.post('/login', (req, res) => {
 });
 
 // 获取管理员信息
-router.get('/profile', adminAuth, (req, res) => {
+router.get('/profile', adminAuth, async (req, res) => {
   try {
-    const admin = storage.admins.find(a => a.id === req.admin.id);
+    const admin = await Admin.findByPk(req.admin.id);
     
     if (!admin) {
       return res.status(404).json({ message: '管理员不存在' });

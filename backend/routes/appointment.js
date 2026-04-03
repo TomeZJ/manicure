@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { storage, generateId } = require('../config/memoryStorage');
+const { Appointment, Store, Technician, User, Project, TimeSlot } = require('../models');
 const { userAuth, adminAuth } = require('../middleware/auth');
 
 // 用户创建预约
-router.post('/', userAuth, (req, res) => {
+router.post('/', userAuth, async (req, res) => {
   try {
     // 兼容前端发送的旧字段名格式
     const {
@@ -17,22 +17,17 @@ router.post('/', userAuth, (req, res) => {
       customer_phone: customerPhone
     } = req.body;
     
-    const appointment = {
-      id: generateId(storage.appointments),
-      userId: req.user.id,
-      storeId,
-      technicianId,
-      projectIds: projectIds,
-      appointmentDate,
-      timeSlot,
-      customerName,
-      customerPhone,
-      status: 'pending',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    
-    storage.appointments.push(appointment);
+    const appointment = await Appointment.create({
+      user_id: req.user.id,
+      store_id: storeId,
+      technician_id: technicianId,
+      project_ids: projectIds,
+      appointment_date: appointmentDate,
+      time_slot: timeSlot,
+      customer_name: customerName,
+      customer_phone: customerPhone,
+      status: 'pending'
+    });
     
     res.status(201).json({
       message: '预约成功',
@@ -45,33 +40,22 @@ router.post('/', userAuth, (req, res) => {
 });
 
 // 获取用户的预约列表
-router.get('/user', userAuth, (req, res) => {
+router.get('/user', userAuth, async (req, res) => {
   try {
     const { status } = req.query;
-    let appointments = storage.appointments.filter(a => a.userId === req.user.id);
+    const where = { user_id: req.user.id };
     
     if (status) {
-      appointments = appointments.filter(a => a.status === status);
+      where.status = status;
     }
     
-    // 排序：按创建时间倒序
-    appointments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    
-    // 关联数据
-    const appointmentsWithDetails = appointments.map(appointment => {
-      const store = storage.stores.find(s => s.id === appointment.storeId);
-      const technician = storage.technicians.find(t => t.id === appointment.technicianId);
-      const user = storage.users.find(u => u.id === appointment.userId);
-      
-      return {
-        ...appointment,
-        store,
-        technician,
-        user
-      };
+    const appointments = await Appointment.findAll({
+      where,
+      include: [Store, Technician, User],
+      order: [['created_at', 'DESC']]
     });
     
-    res.json(appointmentsWithDetails);
+    res.json(appointments);
   } catch (error) {
     console.error('获取预约列表失败:', error);
     res.status(500).json({ message: '服务器内部错误' });
@@ -79,9 +63,14 @@ router.get('/user', userAuth, (req, res) => {
 });
 
 // 取消预约（用户）
-router.put('/:id/cancel', userAuth, (req, res) => {
+router.put('/:id/cancel', userAuth, async (req, res) => {
   try {
-    const appointment = storage.appointments.find(a => a.id === parseInt(req.params.id) && a.userId === req.user.id);
+    const appointment = await Appointment.findOne({
+      where: {
+        id: req.params.id,
+        user_id: req.user.id
+      }
+    });
     
     if (!appointment) {
       return res.status(404).json({ message: '预约不存在' });
@@ -91,8 +80,7 @@ router.put('/:id/cancel', userAuth, (req, res) => {
       return res.status(400).json({ message: '只能取消待服务的预约' });
     }
     
-    appointment.status = 'cancelled';
-    appointment.updatedAt = new Date();
+    await appointment.update({ status: 'cancelled' });
     
     res.json({ message: '预约已取消' });
   } catch (error) {
@@ -102,50 +90,39 @@ router.put('/:id/cancel', userAuth, (req, res) => {
 });
 
 // 管理员获取所有预约列表
-router.get('/admin', adminAuth, (req, res) => {
+router.get('/admin', adminAuth, async (req, res) => {
   try {
     // 兼容前端发送的下划线命名参数
     const { date, status, technician_id: technicianId, store_id: storeId, user_id: userId } = req.query;
-    let appointments = storage.appointments;
+    const where = {};
     
     if (date) {
-      appointments = appointments.filter(a => a.appointmentDate === date);
+      where.appointment_date = date;
     }
     
     if (status) {
-      appointments = appointments.filter(a => a.status === status);
+      where.status = status;
     }
     
     if (technicianId) {
-      appointments = appointments.filter(a => a.technicianId === parseInt(technicianId));
+      where.technician_id = technicianId;
     }
     
     if (storeId) {
-      appointments = appointments.filter(a => a.storeId === parseInt(storeId));
+      where.store_id = storeId;
     }
     
     if (userId) {
-      appointments = appointments.filter(a => a.userId === parseInt(userId));
+      where.user_id = userId;
     }
     
-    // 排序：按创建时间倒序
-    appointments.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    
-    // 关联数据
-    const appointmentsWithDetails = appointments.map(appointment => {
-      const store = storage.stores.find(s => s.id === appointment.storeId);
-      const technician = storage.technicians.find(t => t.id === appointment.technicianId);
-      const user = storage.users.find(u => u.id === appointment.userId);
-      
-      return {
-        ...appointment,
-        store,
-        technician,
-        user
-      };
+    const appointments = await Appointment.findAll({
+      where,
+      include: [Store, Technician, User],
+      order: [['created_at', 'DESC']]
     });
     
-    res.json(appointmentsWithDetails);
+    res.json(appointments);
   } catch (error) {
     console.error('获取预约列表失败:', error);
     res.status(500).json({ message: '服务器内部错误' });
@@ -153,17 +130,16 @@ router.get('/admin', adminAuth, (req, res) => {
 });
 
 // 管理员更新预约状态
-router.put('/:id/status', adminAuth, (req, res) => {
+router.put('/:id/status', adminAuth, async (req, res) => {
   try {
     const { status } = req.body;
-    const appointment = storage.appointments.find(a => a.id === parseInt(req.params.id));
+    const appointment = await Appointment.findByPk(req.params.id);
     
     if (!appointment) {
       return res.status(404).json({ message: '预约不存在' });
     }
     
-    appointment.status = status;
-    appointment.updatedAt = new Date();
+    await appointment.update({ status });
     
     res.json({
       message: '状态更新成功',
@@ -176,28 +152,22 @@ router.put('/:id/status', adminAuth, (req, res) => {
 });
 
 // 管理员查看预约详情
-router.get('/:id', adminAuth, (req, res) => {
+router.get('/:id', adminAuth, async (req, res) => {
   try {
-    const appointment = storage.appointments.find(a => a.id === parseInt(req.params.id));
+    const appointment = await Appointment.findByPk(req.params.id, {
+      include: [Store, Technician, User]
+    });
     
     if (!appointment) {
       return res.status(404).json({ message: '预约不存在' });
     }
     
-    // 关联数据
-    const store = storage.stores.find(s => s.id === appointment.storeId);
-    const technician = storage.technicians.find(t => t.id === appointment.technicianId);
-    const user = storage.users.find(u => u.id === appointment.userId);
-    
     // 获取预约的项目详情
-    const projectIds = appointment.projectIds.split(',').map(id => parseInt(id));
-    const projects = storage.projects.filter(p => projectIds.includes(p.id));
+    const projectIds = appointment.project_ids.split(',').map(id => parseInt(id));
+    const projects = await Project.findAll({ where: { id: projectIds } });
     
     res.json({
-      ...appointment,
-      store,
-      technician,
-      user,
+      ...appointment.toJSON(),
       projects
     });
   } catch (error) {
@@ -207,15 +177,15 @@ router.get('/:id', adminAuth, (req, res) => {
 });
 
 // 管理员删除预约
-router.delete('/:id', adminAuth, (req, res) => {
+router.delete('/:id', adminAuth, async (req, res) => {
   try {
-    const appointmentIndex = storage.appointments.findIndex(a => a.id === parseInt(req.params.id));
+    const appointment = await Appointment.findByPk(req.params.id);
     
-    if (appointmentIndex === -1) {
+    if (!appointment) {
       return res.status(404).json({ message: '预约不存在' });
     }
     
-    storage.appointments.splice(appointmentIndex, 1);
+    await appointment.destroy();
     
     res.json({ message: '删除成功' });
   } catch (error) {
@@ -225,46 +195,48 @@ router.delete('/:id', adminAuth, (req, res) => {
 });
 
 // 获取可预约时间段（根据门店和日期）
-router.get('/available-slots/:storeId', (req, res) => {
+router.get('/available-slots/:storeId', async (req, res) => {
   try {
     const { date } = req.query;
-    const storeId = parseInt(req.params.storeId);
+    const storeId = req.params.storeId;
     
     if (!date) {
       return res.status(400).json({ message: '请提供日期' });
     }
     
     // 获取门店的所有时间段
-    const timeSlots = storage.timeSlots.filter(t => t.storeId === storeId);
+    const timeSlots = await TimeSlot.findAll({ where: { store_id: storeId } });
     
     // 获取该日期已预约的时间段
-    const appointments = storage.appointments.filter(a => 
-      a.storeId === storeId && 
-      a.appointmentDate === date && 
-      a.status === 'pending'
-    );
+    const appointments = await Appointment.findAll({
+      where: {
+        store_id: storeId,
+        appointment_date: date,
+        status: 'pending'
+      }
+    });
     
     // 统计每个时间段的预约数量
     const slotCounts = {};
     appointments.forEach(app => {
-      if (slotCounts[app.timeSlot]) {
-        slotCounts[app.timeSlot]++;
+      if (slotCounts[app.time_slot]) {
+        slotCounts[app.time_slot]++;
       } else {
-        slotCounts[app.timeSlot] = 1;
+        slotCounts[app.time_slot] = 1;
       }
     });
     
     // 计算可预约的时间段
     const availableSlots = timeSlots.map(slot => {
-      const slotKey = `${slot.startTime}-${slot.endTime}`;
+      const slotKey = `${slot.start_time}-${slot.end_time}`;
       const bookedCount = slotCounts[slotKey] || 0;
-      const isAvailable = bookedCount < slot.maxCapacity;
+      const isAvailable = bookedCount < slot.max_capacity;
       
       return {
         id: slot.id,
-        start_time: slot.startTime,
-        end_time: slot.endTime,
-        max_capacity: slot.maxCapacity,
+        start_time: slot.start_time,
+        end_time: slot.end_time,
+        max_capacity: slot.max_capacity,
         booked_count: bookedCount,
         is_available: isAvailable
       };

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const { storage, generateId } = require('../config/memoryStorage');
+const { User } = require('../models');
 const { userAuth } = require('../middleware/auth');
 require('dotenv').config();
 
 // 用户登录/注册（手机号登录）
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { phone } = req.body;
     
@@ -15,18 +15,14 @@ router.post('/login', (req, res) => {
     }
     
     // 查找用户，不存在则创建
-    let user = storage.users.find(u => u.phone === phone);
+    let user = await User.findOne({ where: { phone } });
     
     if (!user) {
-      user = {
-        id: generateId(storage.users),
+      user = await User.create({
         phone,
         name: '',
-        avatar: '',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      };
-      storage.users.push(user);
+        avatar: ''
+      });
     }
     
     // 生成JWT令牌
@@ -53,9 +49,9 @@ router.post('/login', (req, res) => {
 });
 
 // 获取用户信息
-router.get('/profile', userAuth, (req, res) => {
+router.get('/profile', userAuth, async (req, res) => {
   try {
-    const user = storage.users.find(u => u.id === req.user.id);
+    const user = await User.findByPk(req.user.id);
     
     if (!user) {
       return res.status(404).json({ message: '用户不存在' });
@@ -74,18 +70,19 @@ router.get('/profile', userAuth, (req, res) => {
 });
 
 // 更新用户信息
-router.put('/profile', userAuth, (req, res) => {
+router.put('/profile', userAuth, async (req, res) => {
   try {
     const { name, avatar } = req.body;
-    const user = storage.users.find(u => u.id === req.user.id);
+    const user = await User.findByPk(req.user.id);
     
     if (!user) {
       return res.status(404).json({ message: '用户不存在' });
     }
     
-    user.name = name || user.name;
-    user.avatar = avatar || user.avatar;
-    user.updatedAt = new Date();
+    await user.update({
+      name: name || user.name,
+      avatar: avatar || user.avatar
+    });
     
     res.json({
       message: '更新成功',
