@@ -60,6 +60,11 @@ const Appointment = sequelize.define('Appointment', {
     type: DataTypes.ENUM('pending', 'completed', 'cancelled'),
     defaultValue: 'pending'
   },
+  version: {
+    type: DataTypes.INTEGER,
+    defaultValue: 1,
+    comment: '乐观锁版本号'
+  },
   created_at: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW

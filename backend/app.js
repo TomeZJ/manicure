@@ -19,7 +19,7 @@ app.get("/health", (req, res) => {
 });
 
 // 启动服务器
-app.listen(PORT, () => {
-  console.log(`服务器运行在 http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`服务器运行在 http://0.0.0.0:${PORT}`);
   console.log(`管理员账号: admin / 123456`);
 });

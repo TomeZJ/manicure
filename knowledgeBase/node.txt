@@ -1,0 +1,78 @@
+Node.js 列表状态流转中的并发问题
+在后台系统中，经常会遇到这样的场景：后台管理的一个列表中，每条数据都有状态流转，例如：新建 → 待发布 → 待审核 → 已审核 / 已拒绝，并且支持多人同时操作。
+这看起来就是常规的增删改查，可一旦多人对同一条数据进行相同或者不同的操作时，就会出现一堆“诡异问题”。
+一、问题场景
+场景1：重复发布
+同一时间，用户A和用户B同时点击“发布”。问题：数据被发布两次，触发两次下游流程
+👉 本质问题：并发写入冲突
+场景2：脏操作
+A已经发布了数据a，但B页面没刷新，也点击了发布。问题：B基于“旧状态”进行操作，后端如果不校验，会导致非法状态流转
+👉 本质问题：过期数据操作
+场景3：状态冲突
+A审核通过，B审核拒绝，同时发生。问题：最终状态不可预测
+👉 本质问题：写入覆盖
+总结这些问题的核心就是：抢同一份数据的控制权
+二、解决方案
+✅ 方案1：状态机校验
+给每个状态定义合法流转路径：
+const stateFlow = {
+    NEW: ['PENDING_PUBLISH'],
+    PENDING_PUBLISH: ['PENDING_REVIEW'],
+    PENDING_REVIEW: ['APPROVED', 'REJECTED'],
+}
+操作时校验：
+function canTransfer(from, to) {
+    return stateFlow[from]?.includes(to)
+}
+👉 好处：
+防止“乱操作”
+保证业务逻辑正确
+👉 但不能解决并发 ❌
+✅ 方案2：数据库条件更新
+关键思想：用条件限制更新
+UPDAT Earticles
+SET status = 'PENDING_REVIEW'
+WHERE id = 1 AND status = 'PENDING_PUBLISH'
+只有状态还是PENDING_PUBLISH才允许更新，如果A先更新了，B再执行就会失败（影响行数 = 0）
+👉 Node.js 示例：
+const result = await db.query(`
+    UPDATE articles
+    SET status = 'PENDING_REVIEW'
+    WHERE id = ? AND status = 'PENDING_PUBLISH'
+`, [id])
+if (result.affectedRows === 0) {
+    throw newError('状态已变更，请刷新页面')
+}
+✅ 方案3：乐观锁
+列表数据每一条增加一个version字段，默认为1，列表返回；更新时再传给后端，后端根据这个字段，加到where上，更新后，+1存入。
+UPDAT articles
+SET status = 'APPROVED', version = version + 1
+WHERE id = 1 AND version = 1
+👉 Node.js 示例：
+const result = await db.query(`
+    UPDATE articles
+    SET status = ?, version = version + 1
+    WHERE id = ? AND version = ?
+`, [nextStatus, id, version])
+👉 好处：
+精准控制并发
+避免“最后写入覆盖前面的”
+✅ 方案4：悲观锁
+有兴趣的大师们去了解一下，本篇先不做介绍
+✅ 方案5：接口幂等性（防重复操作）
+给“发布”操作加唯一标识：
+const key = `publish:${userId}:${articleId}`
+用 Redis：
+const exists = await redis.setnx(key, 1)
+if (!exists) {
+    throw newError('请勿重复操作')
+}
+✅ 方案6：前端优化
+这个就不讲了，有兴趣自己参考下，无非就是加锁/防抖。但是这个只能减少问题
+三、个人推荐最佳组合
+建议组合使用：
+✅ 状态机校验
+✅ 乐观锁
+✅ 幂等控制
+✅ 前端加锁/防抖
+技术的择优合作，才是一个好项目的基础要素。牛的不是一门语言，牛的永远是业务。

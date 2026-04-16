@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const sequelize = require('../config/database');
 const { Technician } = require('../models');
 const { adminAuth } = require('../middleware/auth');
+const { updateTechnicianStatusWithLock } = require('../utils/statusUpdate');
+const { canTransfer, technicianStateFlow, getNextStates } = require('../config/stateMachine');
 
 // 获取技师列表
 router.get('/', async (req, res) => {
@@ -61,7 +64,46 @@ router.post('/', adminAuth, async (req, res) => {
   }
 });
 
-// 更新技师（管理员）
+// 更新技师状态（管理员）- 使用乐观锁
+router.put('/:id/status', adminAuth, async (req, res) => {
+  try {
+    const { status, version, current_status } = req.body;
+
+    // 前端必须传入 version 和 current_status
+    if (!version || !current_status || !status) {
+      return res.status(400).json({ message: '请提供 status、version 和 current_status 参数' });
+    }
+
+    const technician = await Technician.findByPk(req.params.id);
+
+    if (!technician) {
+      return res.status(404).json({ message: '技师不存在' });
+    }
+
+    // 使用乐观锁更新状态
+    const result = await updateTechnicianStatusWithLock(
+      sequelize,
+      req.params.id,
+      current_status,
+      status,
+      version
+    );
+
+    if (!result.success) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    res.json({
+      message: '状态更新成功',
+      technician: result.technician
+    });
+  } catch (error) {
+    console.error('更新技师状态失败:', error);
+    res.status(500).json({ message: '服务器内部错误' });
+  }
+});
+
+// 更新技师信息（管理员）- 不涉及状态变更
 router.put('/:id', adminAuth, async (req, res) => {
   try {
     const { name, avatar, skills, status, storeId } = req.body;

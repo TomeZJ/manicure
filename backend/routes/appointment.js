@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const sequelize = require('../config/database');
 const { Appointment, Store, Technician, User, Project, TimeSlot } = require('../models');
 const { userAuth, adminAuth } = require('../middleware/auth');
+const { updateAppointmentStatusWithLock } = require('../utils/statusUpdate');
+const { canTransfer, appointmentStateFlow, getNextStates } = require('../config/stateMachine');
 
 // 用户创建预约
 router.post('/', userAuth, async (req, res) => {
@@ -62,27 +65,44 @@ router.get('/user', userAuth, async (req, res) => {
   }
 });
 
-// 取消预约（用户）
+// 取消预约（用户）- 使用乐观锁
 router.put('/:id/cancel', userAuth, async (req, res) => {
   try {
+    const { version, current_status } = req.body;
+
+    // 前端必须传入 version 和 current_status
+    if (!version || !current_status) {
+      return res.status(400).json({ message: '请提供 version 和 current_status 参数' });
+    }
+
     const appointment = await Appointment.findOne({
       where: {
         id: req.params.id,
         user_id: req.user.id
       }
     });
-    
+
     if (!appointment) {
       return res.status(404).json({ message: '预约不存在' });
     }
-    
-    if (appointment.status !== 'pending') {
-      return res.status(400).json({ message: '只能取消待服务的预约' });
+
+    // 使用乐观锁更新状态
+    const result = await updateAppointmentStatusWithLock(
+      sequelize,
+      req.params.id,
+      current_status,
+      'cancelled',
+      version
+    );
+
+    if (!result.success) {
+      return res.status(400).json({ message: result.message });
     }
-    
-    await appointment.update({ status: 'cancelled' });
-    
-    res.json({ message: '预约已取消' });
+
+    res.json({
+      message: '预约已取消',
+      appointment: result.appointment
+    });
   } catch (error) {
     console.error('取消预约失败:', error);
     res.status(500).json({ message: '服务器内部错误' });
@@ -129,21 +149,38 @@ router.get('/admin', adminAuth, async (req, res) => {
   }
 });
 
-// 管理员更新预约状态
+// 管理员更新预约状态 - 使用乐观锁
 router.put('/:id/status', adminAuth, async (req, res) => {
   try {
-    const { status } = req.body;
+    const { status, version, current_status } = req.body;
+
+    // 前端必须传入 version 和 current_status
+    if (!version || !current_status || !status) {
+      return res.status(400).json({ message: '请提供 status、version 和 current_status 参数' });
+    }
+
     const appointment = await Appointment.findByPk(req.params.id);
-    
+
     if (!appointment) {
       return res.status(404).json({ message: '预约不存在' });
     }
-    
-    await appointment.update({ status });
-    
+
+    // 使用乐观锁更新状态
+    const result = await updateAppointmentStatusWithLock(
+      sequelize,
+      req.params.id,
+      current_status,
+      status,
+      version
+    );
+
+    if (!result.success) {
+      return res.status(400).json({ message: result.message });
+    }
+
     res.json({
       message: '状态更新成功',
-      appointment
+      appointment: result.appointment
     });
   } catch (error) {
     console.error('更新预约状态失败:', error);

@@ -23,6 +23,11 @@ const Technician = sequelize.define('Technician', {
     type: DataTypes.ENUM('available', 'busy'),
     defaultValue: 'available'
   },
+  version: {
+    type: DataTypes.INTEGER,
+    defaultValue: 1,
+    comment: '乐观锁版本号'
+  },
   store_id: {
     type: DataTypes.INTEGER,
     allowNull: true
