@@ -1,4 +1,4 @@
-const { canTransfer, appointmentStateFlow, technicianStateFlow } = require('./stateMachine');
+const { canTransfer, appointmentStateFlow, technicianStateFlow } = require('../config/stateMachine');
 
 /**
  * 使用乐观锁更新预约状态

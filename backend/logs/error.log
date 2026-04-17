@@ -1,0 +1,816 @@
+2026-04-17 09:51:57: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async Appointment.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` DROP FOREIGN KEY `appointments_ibfk_10`;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` DROP FOREIGN KEY `appointments_ibfk_10`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `appointments` DROP FOREIGN KEY `appointments_ibfk_10`;',
+  parameters: {}
+}
+2026-04-17 09:51:57: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+  parameters: {}
+}
+2026-04-17 09:51:58: 数据库模型同步失败: UnknownConstraintError [SequelizeUnknownConstraintError]: Constraint time_slots_ibfk_1 on table time_slots does not exist
+    at MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  parent: { sql: '', name: '', message: '' },
+  original: { sql: '', name: '', message: '' },
+  sql: '',
+  parameters: {},
+  constraint: 'time_slots_ibfk_1',
+  fields: undefined,
+  table: 'time_slots'
+}
+2026-04-17 09:51:58: 数据库模型同步失败: UnknownConstraintError [SequelizeUnknownConstraintError]: Constraint time_slots_ibfk_1 on table time_slots does not exist
+    at MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  parent: { sql: '', name: '', message: '' },
+  original: { sql: '', name: '', message: '' },
+  sql: '',
+  parameters: {},
+  constraint: 'time_slots_ibfk_1',
+  fields: undefined,
+  table: 'time_slots'
+}
+2026-04-17 09:52:05: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  original: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async Appointment.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` DROP FOREIGN KEY `appointments_ibfk_16`;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` DROP FOREIGN KEY `appointments_ibfk_16`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `appointments` DROP FOREIGN KEY `appointments_ibfk_16`;',
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Store.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Appointment.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: "ALTER TABLE `appointments` CHANGE `project_ids` `project_ids` VARCHAR(255) NOT NULL COMMENT '项目ID，逗号分隔';",
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: "ALTER TABLE `appointments` CHANGE `project_ids` `project_ids` VARCHAR(255) NOT NULL COMMENT '项目ID，逗号分隔';",
+    parameters: undefined
+  },
+  sql: "ALTER TABLE `appointments` CHANGE `project_ids` `project_ids` VARCHAR(255) NOT NULL COMMENT '项目ID，逗号分隔';",
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` CHANGE `start_time` `start_time` TIME NOT NULL;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` CHANGE `start_time` `start_time` TIME NOT NULL;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` CHANGE `start_time` `start_time` TIME NOT NULL;',
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  original: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+  parameters: {}
+}
+2026-04-17 09:52:51: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  original: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Appointment.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `appointments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Appointment.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `appointments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `appointments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Store.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Store.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Store.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `stores` CHANGE `name` `name` VARCHAR(100) NOT NULL;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` CHANGE `updated_at` `updated_at` DATETIME;',
+    parameters: undefined
+  },
+  original: Error: Deadlock found when trying to get lock; try restarting transaction
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_LOCK_DEADLOCK',
+    errno: 1213,
+    sqlState: '40001',
+    sqlMessage: 'Deadlock found when trying to get lock; try restarting transaction',
+    sql: 'ALTER TABLE `time_slots` CHANGE `updated_at` `updated_at` DATETIME;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` CHANGE `updated_at` `updated_at` DATETIME;',
+  parameters: {}
+}
+2026-04-17 10:41:07: 数据库模型同步失败: Error
+    at Query.run (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MySQLQueryInterface.removeConstraint (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/dialects/mysql/query-interface.js:67:12)
+    at async TimeSlot.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/model.js:979:17)
+    at async Sequelize.sync (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/sequelize@6.37.8_mysql2@3.20.0_@types+node@25.5.0__sqlite3@5.1.7/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  original: Error: Can't DROP 'time_slots_ibfk_1'; check that column/key exists
+      at Packet.asError (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packets/packet.js:788:17)
+      at Query.execute (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:552:34)
+      at PacketParser.onPacket (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:102:12)
+      at PacketParser.executeStart (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/ZhangJian/Documents/ai/manicure/backend/node_modules/.pnpm/mysql2@3.20.0_@types+node@25.5.0/node_modules/mysql2/lib/base/connection.js:109:25)
+      at Socket.emit (node:events:519:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5) {
+    code: 'ER_CANT_DROP_FIELD_OR_KEY',
+    errno: 1091,
+    sqlState: '42000',
+    sqlMessage: "Can't DROP 'time_slots_ibfk_1'; check that column/key exists",
+    sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+    parameters: undefined
+  },
+  sql: 'ALTER TABLE `time_slots` DROP FOREIGN KEY `time_slots_ibfk_1`;',
+  parameters: {}
+}
